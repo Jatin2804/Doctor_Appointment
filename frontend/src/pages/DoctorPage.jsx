@@ -20,7 +20,7 @@ function DoctorPage() {
     const fetchDoctorData = async () => {
       setLoading(true);
       try {
-        const response = await axios.get(`http://localhost:5000/doctors/${id}/slots?date=${selectedDate}`);
+        const response = await axios.get(`https://doctor-appointment-owms.onrender.com/doctors/${id}/slots?date=${selectedDate}`);
         setDoctor(response.data.doctor);
         setSlots(response.data.slots);
       } catch (error) {

@@ -1,9 +1,11 @@
 import React, { useState, useContext } from 'react';
 import { Box, TextField, Button, Grid, Typography, MenuItem } from '@mui/material';
+import { useNavigate } from 'react-router-dom';
 import { AppointmentContext } from '../AppointmentContext';
 
 function AppointmentForm({ onSubmit }) {
   const { doctor, selectedDate, selectedSlot } = useContext(AppointmentContext);
+  const navigate = useNavigate(); // Initialize navigation hook
 
   const [formData, setFormData] = useState({
     appointmentType: "",
@@ -11,7 +13,6 @@ function AppointmentForm({ onSubmit }) {
     notes: "",
   });
 
-//   console.log(selectedDate,selectedSlot);
   const handleChange = (e) => {
     setFormData((prev) => ({
       ...prev,
@@ -21,36 +22,31 @@ function AppointmentForm({ onSubmit }) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-   
+
     const date = new Date(selectedDate);
-    
-    // Extract hours and minutes from selectedSlot (assuming format is "HH:mm")
     const [hours, minutes] = selectedSlot.split(":").map(Number);
     date.setHours(hours, minutes, 0, 0);
-  
-    // Convert to ISO format (expected format)
     const formattedDate = date.toISOString();
-  
+
     const appointmentData = {
       doctorId: doctor?._id,
-      date: formattedDate, 
+      date: formattedDate,
       duration: 30,
       appointmentType: formData.appointmentType,
       patientName: formData.patientName,
       notes: formData.notes,
     };
-  
+
     try {
-      const response = await fetch('http://localhost:5000/appointments', {
+      const response = await fetch('https://doctor-appointment-owms.onrender.com/appointments', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(appointmentData),
       });
-  
+
       if (response.ok) {
         alert('Appointment booked successfully!');
-        console.log(response);
-        // onSubmit(appointmentData);
+        navigate('/appointments'); // Navigate to /appointments after booking
       } else {
         alert('Failed to book appointment.');
       }
@@ -58,14 +54,13 @@ function AppointmentForm({ onSubmit }) {
       console.error('Error booking appointment:', error);
     }
   };
-  
 
   return (
     <Box component="form" onSubmit={handleSubmit} sx={{ mt: 2, p: 3, borderRadius: 2, boxShadow: 3, maxWidth: 500, mx: "auto", bgcolor: "white" }}>
       <Typography variant="h5" gutterBottom textAlign="center">
         Book an Appointment
       </Typography>
-      
+
       <Grid container spacing={2}>
         <Grid item xs={12}>
           <TextField
@@ -78,8 +73,6 @@ function AppointmentForm({ onSubmit }) {
             required
           />
         </Grid>
-
-
 
         <Grid item xs={12}>
           <TextField

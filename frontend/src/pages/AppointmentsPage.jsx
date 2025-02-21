@@ -10,7 +10,7 @@ import {
 } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 
-const API_BASE_URL = "http://localhost:5000/appointments";
+const API_BASE_URL = "https://doctor-appointment-owms.onrender.com/appointments";
 
 const AppointmentsPage = () => {
   const [appointments, setAppointments] = useState([]);
@@ -30,7 +30,7 @@ const AppointmentsPage = () => {
   useEffect(() => {
     if (editingAppointment && selectedDate) {
       fetch(
-        `http://localhost:5000/doctors/${editingAppointment.doctorId?._id}/slots?date=${selectedDate}`
+        `https://doctor-appointment-owms.onrender.com/doctors/${editingAppointment.doctorId?._id}/slots?date=${selectedDate}`
       )
         .then((res) => res.json())
         .then((data) => setAvailableSlots(data.slots))

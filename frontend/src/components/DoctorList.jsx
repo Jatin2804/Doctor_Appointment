@@ -11,7 +11,7 @@ function DoctorList() {
   useEffect(() => {
     const fetchDoctors = async () => {
       try {
-        const response = await axios.get('http://localhost:5000/doctors');
+        const response = await axios.get('https://doctor-appointment-owms.onrender.com/doctors');
         setDoctors(response.data);
       } catch (error) {
         console.error('Error fetching doctors:', error);

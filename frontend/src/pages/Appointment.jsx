@@ -12,7 +12,7 @@ import {
   Paper,
 } from "@mui/material";
 
-const API_BASE_URL = "http://localhost:5000/appointments";
+const API_BASE_URL = "https://doctor-appointment-owms.onrender.com/appointments";
 
 const AppointmentDetailPage = () => {
   const { id } = useParams();

@@ -11,12 +11,9 @@ function Confirmation({ appointmentData }) {
   return (
     <Box sx={{ mt: 2 }}>
       <Typography variant="h6" gutterBottom>
-        Confirm Your Appointment
+       Booked Appointment
       </Typography>
-      <Typography>Name: {appointmentData.name}</Typography>
-      <Typography>Email: {appointmentData.email}</Typography>
-      <Typography>Phone: {appointmentData.phone}</Typography>
-      <Typography>Reason: {appointmentData.reason}</Typography>
+      
 
       <Button variant="contained" onClick={handleConfirm} sx={{ mt: 2 }}>
         Confirm
