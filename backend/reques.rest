@@ -1,0 +1,45 @@
+### Get all doctors
+GET http://localhost:5000/doctors
+Content-Type: application/json
+
+### Get available slots for a doctor on a specific date
+GET http://localhost:5000/doctors/67b798c251c84d3b77e554c7/slots?date=2023-10-15
+Content-Type: application/json
+
+### Get all appointments
+GET http://localhost:5000/appointments
+Content-Type: application/json
+
+### Get a specific appointment by ID
+GET http://localhost:5000/appointments/67b824b94e5e63f07fd7ec08
+Content-Type: application/json
+
+### Create a new appointment
+POST http://localhost:5000/appointments
+Content-Type: application/json
+
+{
+  "doctorId": "64f1b1b1b1b1b1b1b1b1b1b1",
+  "date": "2023-10-15T09:00:00Z",
+  "duration": 30,
+  "appointmentType": "Routine Check-Up",
+  "patientName": "John Doe",
+  "notes": "First-time visit"
+}
+
+### Update an existing appointment
+PUT http://localhost:5000/appointments/64f1b1b1b1b1b1b1b1b1b1b1
+Content-Type: application/json
+
+{
+  "doctorId": "64f1b1b1b1b1b1b1b1b1b1b1",
+  "date": "2023-10-15T10:00:00Z",
+  "duration": 60,
+  "appointmentType": "Ultrasound",
+  "patientName": "John Doe",
+  "notes": "Updated appointment"
+}
+
+### Delete an appointment
+DELETE http://localhost:5000/appointments/64f1b1b1b1b1b1b1b1b1b1b1
+Content-Type: application/json
